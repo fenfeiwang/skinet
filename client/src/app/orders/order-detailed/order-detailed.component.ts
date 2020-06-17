@@ -13,7 +13,7 @@ import { Route } from '@angular/compiler/src/core';
 export class OrderDetailedComponent implements OnInit {
   order: IOrder;
 
-  constructor(private route: ActivatedRoute, private breadcrumbService: BreadcrumbService, private orderService: OrdersService) { 
+  constructor(private route: ActivatedRoute, private breadcrumbService: BreadcrumbService, private orderService: OrdersService) {
     this.breadcrumbService.set('@OrderDetailed', '');
   }
 
