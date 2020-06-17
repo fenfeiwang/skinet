@@ -56,5 +56,19 @@ namespace API.Controllers
         {
             return Ok(await _orderService.GetDeliveryMethodsAsync());
         }
+
+        [HttpDelete]
+        public async Task DeleteOrderByIdAsync(int? id)
+        {
+            var email = HttpContext.User.RetrieveEmailFromPrincipal();
+            if(id == null)
+            {
+                await _orderService.DeleteOrdersAsync(email);
+            }
+            else
+            {
+                await _orderService.DeleteOrderByIdAsync(id.Value, email);
+            }
+        }
     }
 }

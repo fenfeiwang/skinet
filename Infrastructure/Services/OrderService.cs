@@ -35,6 +35,7 @@ namespace Infrastructure.Services
 
             // get delivery method from repo
             var deliveryMethod = await _unitOfWork.Repository<DeliveryMethod>().GetByIdAsync(deliveryMethodId);
+            if (deliveryMethod == null) return null;
 
             // calc subtotal
             var subtotal = items.Sum(item => item.Price * item.Quantity);
@@ -69,6 +70,27 @@ namespace Infrastructure.Services
         {
             var spec = new OrdersWithItemsAndOrderingSpecification(buyerEmail);
             return await _unitOfWork.Repository<Order>().ListAsync(spec);
+        }
+
+        public async Task<bool> DeleteOrdersAsync(string buyerEmail)
+        {
+            var orders = await GetOrderForUserAsync(buyerEmail);
+            if (orders.Count <= 0) return true;
+            foreach(var order in orders)
+            {
+                _unitOfWork.Repository<Order>().Delete(order);
+            }
+            await _unitOfWork.Complete();
+            return true;
+        }
+
+        public async Task<bool> DeleteOrderByIdAsync(int id, string buyerEmail)
+        {
+            var order = await GetOrderByIdAsync(id, buyerEmail);
+            if (order == null) return true;
+            _unitOfWork.Repository<Order>().Delete(order);
+            await _unitOfWork.Complete();
+            return true;
         }
     }
 }
