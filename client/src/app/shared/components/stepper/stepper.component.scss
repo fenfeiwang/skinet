@@ -6,14 +6,16 @@ button.nav-link {
     &:focus {
         outline: none;
     }
-
     &.active:hover {
-        outline: white;
+        color: white;
     }
-    &:active {
+    & :active {
         outline: none;
     }
     &.active:focus {
         outline: none;
+    }
+    &:disabled:not(.active) {
+        color: #333;
     }
 }
