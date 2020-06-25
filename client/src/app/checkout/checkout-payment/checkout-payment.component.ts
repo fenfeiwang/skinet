@@ -1,4 +1,3 @@
-import { finalize } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { CheckoutService } from './../checkout.service';
 import { BasketService } from './../../basket/basket.service';
