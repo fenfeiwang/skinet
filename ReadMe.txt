@@ -1,4 +1,4 @@
-This project builds an e-commerce store using Angular 9 and .Net Core 3.1. By following the Udemy Course's instructor Neil, I completed the development and deployment.
+This project builds an e-commerce store using Angular 9 and .Net Core 3.1.
 
 Through this project, I haved done:
 1. Setting up the developer environment
